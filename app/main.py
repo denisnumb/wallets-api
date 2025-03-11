@@ -3,9 +3,9 @@ from fastapi import FastAPI, HTTPException, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 
-from .models import Base, WalletsOrm
-from .database import async_session, sync_engine
-from .schemas import WalletResponse, OperationRequest, OperationType
+from app.models import Base, WalletsOrm
+from app.database import async_session, sync_engine
+from app.schemas import WalletResponse, OperationRequest, OperationType
 
 
 Base.metadata.create_all(sync_engine)

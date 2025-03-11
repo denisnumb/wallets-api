@@ -1,0 +1,24 @@
+version: "3.8"
+services:
+  db:
+    container_name: project_postgres
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: $6237
+      POSTGRES_DB: wallet_db
+    ports:
+      - 5432:5432
+    volumes:
+      - db_data:/var/lib/postgresql/data
+  app:
+    container_name: wallets_app
+    build: ./
+    depends_on:
+      - db
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000
+    ports:
+      - 8000:8000
+    restart: always
+volumes:
+  db_data:
